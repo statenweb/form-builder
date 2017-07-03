@@ -8,26 +8,24 @@ abstract class Field {
 	protected $field_settings = [];
 	protected $required_fields_all = [ 'slug' ];
 	protected $required_fields = [];
-	protected $fields_all;
 	protected $defaults = [];
 	protected $fields = [];
 	protected $generated_element;
 	protected $generated;
 	protected $prefix = '';
+	protected $require_slug = true;
 
 	public function __construct( Array $field_settings ) {
 
-		$this->fields_all      = [
-			[
-				'name'   => 'slug',
-				'filter' => function ( $slug ) {
-					return sanitize_title( $slug );
-				}
-			]
-		];
+
+		if ( ! $this->require_slug ) {
+			if ( ( $key = array_search( 'slug', $this->required_fields_all ) ) !== false ) {
+				unset( $this->required_fields_all[ $key ] );
+			}
+		}
+
 		$this->field_settings  = $field_settings;
 		$this->required_fields = array_merge( $this->required_fields, $this->required_fields_all );
-		$this->fields          = array_merge( $this->fields_all, $this->fields );
 
 
 	}
@@ -50,7 +48,6 @@ abstract class Field {
 		}
 
 
-
 	}
 
 	private function maybe_generate() {
@@ -66,6 +63,10 @@ abstract class Field {
 
 	public function set_prefix( $prefix ) {
 		$this->prefix = $prefix;
+	}
+
+	public function do_not_require_slug() {
+		$this->require_slug = false;
 	}
 
 

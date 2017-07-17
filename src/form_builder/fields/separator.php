@@ -9,6 +9,8 @@ class Separator extends Field {
 
 		$this->required_fields = [];
 
+		$this->unrequired_fields = [ 'slug' ];
+
 		$this->defaults = array_merge( [
 
 

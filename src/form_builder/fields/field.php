@@ -14,6 +14,7 @@ abstract class Field {
 	protected $generated;
 	protected $prefix = '';
 	protected $require_slug = true;
+	protected $unrequired_fields = [];
 
 	public function __construct( Array $field_settings ) {
 
@@ -40,7 +41,9 @@ abstract class Field {
 	public function validate_fields() {
 
 		foreach ( $this->required_fields as $required_field ) {
-
+			if ( in_array( $required_field, $this->unrequired_fields ) ) {
+				continue;
+			}
 			if ( ! array_key_exists( $required_field, $this->field_settings ) ) {
 				throw new \Exception( sprintf( 'Missing required field %s within %s', $required_field,
 					get_class( $this ) ) );

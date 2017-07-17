@@ -8,6 +8,7 @@ class Content extends Field {
 	public function __construct( Array $field_settings = [] ) {
 
 		$this->required_fields = [ 'content' ];
+		$this->unrequired_fields = [ 'slug' ];
 
 		$this->do_not_require_slug();
 		$this->defaults = array_merge( [

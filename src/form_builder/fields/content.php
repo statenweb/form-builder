@@ -7,7 +7,6 @@ class Content extends Field {
 
 	public function __construct( Array $field_settings = [] ) {
 
-		$this->required_fields = [ 'content' ];
 		$this->unrequired_fields = [ 'slug' ];
 
 		$this->do_not_require_slug();
@@ -24,23 +23,35 @@ class Content extends Field {
 
 	protected function generate() {
 
+		$inner          = '';
+		$inner_template = '<{{INNER_TAG}}>{{CONTENT}}</{{INNER_TAG}}>';
 
-		$template = '<{{OUTER_TAG}} class="{{CSS_PREFIX}}__element-wrap {{CSS_PREFIX}}__element-wrap-{{SLUG}}"><{{INNER_TAG}}>{{CONTENT}}</{{INNER_TAG}}></{{OUTER_TAG}}>';
+		if ( $this->field_settings['content'] ) {
+			$inner = str_replace( [
+				'{{INNER_TAG}}',
+				'{{CONTENT}}',
+			], [
+				esc_attr( $this->field_settings['inner_tag'] ),
+				wp_kses_post( $this->field_settings['content'] ),
+			], $inner_template );
+		}
+
+		$template = '<{{OUTER_TAG}} class="{{CSS_PREFIX}}__element-wrap {{CSS_PREFIX}}__element-wrap-{{SLUG}} {{CLASS}}">{{INNER}}</{{OUTER_TAG}}>';
 
 
 		$replace_array      = [
 			'{{SLUG}}',
 			'{{CSS_PREFIX}}',
 			'{{OUTER_TAG}}',
-			'{{INNER_TAG}}',
-			'{{CONTENT}}',
+			'{{INNER}}',
+			'{{CLASS}}',
 		];
 		$replace_with_array = [
 			esc_attr( $this->field_settings['slug'] ),
 			esc_attr( $this->field_settings['prefix'] ),
 			esc_attr( $this->field_settings['outer_tag'] ),
-			esc_attr( $this->field_settings['inner_tag'] ),
-			wp_kses_post( $this->field_settings['content'] ),
+			$inner,
+			esc_attr( $this->field_settings['class'] ),
 		];
 
 

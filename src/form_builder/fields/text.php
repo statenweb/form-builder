@@ -26,7 +26,7 @@ class Text extends Field {
 	protected function generate() {
 
 
-		$template = '<p class="{{CSS_PREFIX}}__form__element-wrap {{CSS_PREFIX}}__form__element-wrap-{{SLUG}}">{{LABEL_BEFORE}}<input class="{{CSS_PREFIX}}__form__input-text {{CSS_PREFIX}}__form__input-text-{{SLUG}}" type="{{TYPE}}" name="{{CSS_PREFIX}}-{{SLUG}}" placeholder="{{PLACEHOLDER}}" value="" {{REQUIRED_DATA_ATTRIBUTE}} {{ID}}>{{LABEL_AFTER}}</p>';
+		$template = '<p class="{{CSS_PREFIX}}__form__element-wrap {{CSS_PREFIX}}__form__element-wrap-{{SLUG}}">{{LABEL_BEFORE}}<input class="{{CSS_PREFIX}}__form__input-text {{CSS_PREFIX}}__form__input-text-{{SLUG}} {{CLASS}}" type="{{TYPE}}" name="{{CSS_PREFIX}}-{{SLUG}}" placeholder="{{PLACEHOLDER}}" value="" {{REQUIRED_DATA_ATTRIBUTE}} {{ID}}>{{LABEL_AFTER}}</p>';
 
 		$id = '';
 		if ( $this->field_settings['id'] ) {
@@ -74,6 +74,7 @@ class Text extends Field {
 			'{{LABEL_AFTER}}',
 			'{{CSS_PREFIX}}',
 			'{{ID}}',
+			'{{CLASS}}',
 		];
 		$replace_with_array = [
 			esc_attr( $this->field_settings['slug'] ),
@@ -86,6 +87,7 @@ class Text extends Field {
 			$label_after,
 			$this->field_settings['prefix'],
 			$id,
+			esc_attr( $this->field_settings['class'] ),
 
 
 		];

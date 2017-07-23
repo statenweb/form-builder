@@ -26,7 +26,7 @@ class Checkbox extends Field {
 	protected function generate() {
 
 
-		$template = '<p class="{{CSS_PREFIX}}__form__element-wrap {{CSS_PREFIX}}__form__element-wrap-{{SLUG}} {{OUTER_CLASS}}">{{LABEL_BEFORE}}<input class="{{CSS_PREFIX}}__form__input-text {{CSS_PREFIX}}__form__input-text-{{SLUG}} {{CLASS}}" type="{{TYPE}}" name="{{CSS_PREFIX}}-{{SLUG}}" placeholder="{{PLACEHOLDER}}" value="" {{ID}}>{{LABEL_AFTER}}</p>';
+		$template = '<p class="{{CSS_PREFIX}}__form__element-wrap {{CSS_PREFIX}}__form__element-wrap-{{SLUG}} {{OUTER_CLASS}}">{{LABEL_BEFORE}}<input class="{{CSS_PREFIX}}__form__input-checkbox {{CSS_PREFIX}}__form__input-checkbox-{{SLUG}} {{CLASS}}" type="{{TYPE}}" name="{{CSS_PREFIX}}-{{SLUG}}" placeholder="{{PLACEHOLDER}}" value="" {{ID}}>{{LABEL_AFTER}}</p>';
 
 		$id = '';
 		if ( $this->field_settings['id'] ) {

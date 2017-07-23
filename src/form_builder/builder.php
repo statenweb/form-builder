@@ -40,11 +40,11 @@ class Builder {
 	public function output() {
 
 
-		$before_template = '<form method="{{METHOD}}" class="{{CSS_PREFIX}}__form {{CSS_PREFIX}}__form-{{SLUG}}">';
+		$before_template = '<form method="{{METHOD}}" class="{{CSS_PREFIX}}__form {{CSS_PREFIX}}__form-{{SLUG}} {{CLASS}}">';
 		$after_template  = '</form>';
 
-		$before = str_replace( [ '{{CSS_PREFIX}}', '{{SLUG}}', '{{METHOD}}' ],
-			[ $this->slug, $this->slug, $this->settings['method'] ], $before_template );
+		$before = str_replace( [ '{{CSS_PREFIX}}', '{{SLUG}}', '{{METHOD}}', '{{CLASS}}' ],
+			[ $this->slug, $this->slug, $this->settings['method'], $this->settings['class'] ], $before_template );
 		$after  = $after_template;
 
 		echo $before;

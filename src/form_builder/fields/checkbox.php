@@ -26,7 +26,7 @@ class Checkbox extends Field {
 	protected function generate() {
 
 
-		$template = '<p class="{{CSS_PREFIX}}__form__element-wrap {{CSS_PREFIX}}__form__element-wrap-{{SLUG}}">{{LABEL_BEFORE}}<input class="{{CSS_PREFIX}}__form__input-text {{CSS_PREFIX}}__form__input-text-{{SLUG}}" type="{{TYPE}}" name="{{CSS_PREFIX}}-{{SLUG}}" placeholder="{{PLACEHOLDER}}" value="" {{ID}}>{{LABEL_AFTER}}</p>';
+		$template = '<p class="{{CSS_PREFIX}}__form__element-wrap {{CSS_PREFIX}}__form__element-wrap-{{SLUG}} {{OUTER_CLASS}}">{{LABEL_BEFORE}}<input class="{{CSS_PREFIX}}__form__input-text {{CSS_PREFIX}}__form__input-text-{{SLUG}} {{CLASS}}" type="{{TYPE}}" name="{{CSS_PREFIX}}-{{SLUG}}" placeholder="{{PLACEHOLDER}}" value="" {{ID}}>{{LABEL_AFTER}}</p>';
 
 		$id = '';
 		if ( $this->field_settings['id'] ) {
@@ -39,14 +39,15 @@ class Checkbox extends Field {
 				'<span class="{{CSS_PREFIX}}__form__tooltip" data-tooltip="{{TOOLTIP}}" data-hasqtip=""></span>' );
 		}
 		if ( $this->field_settings['label'] ) {
-			$label_element = str_replace( [ '{{SLUG}}', '{{LABEL}}', '{{TOOLTIP}}' ],
+			$label_element = str_replace( [ '{{SLUG}}', '{{LABEL}}', '{{TOOLTIP}}', '{{LABEL_CLASS}}' ],
 				[
 					esc_attr( $this->field_settings['slug'] ),
 					esc_html( $this->field_settings['label'] ),
 					$tooltip_element,
+					esc_attr( $this->field_settings['label_class'] ),
 
 				],
-				'<label class="{{CSS_PREFIX}}__form__input-label {{CSS_PREFIX}}__form__input-label-{{SLUG}}">{{LABEL}}{{TOOLTIP}}</label>' );
+				'<label class="{{CSS_PREFIX}}__form__input-label {{CSS_PREFIX}}__form__input-label-{{SLUG}} {{LABEL_CLASS}}">{{LABEL}}{{TOOLTIP}}</label>' );
 		}
 
 		$label_after  = $label_element;
@@ -66,7 +67,9 @@ class Checkbox extends Field {
 			'{{PLACEHOLDER}}',
 			'{{LABEL}}',
 			'{{CSS_PREFIX}}',
-			'{{ID}}'
+			'{{ID}}',
+			'{{OUTER_CLASS}}',
+			'{{CLASS}}',
 		];
 		$replace_with_array = [
 			esc_attr( $this->field_settings['slug'] ),
@@ -78,6 +81,8 @@ class Checkbox extends Field {
 			$label_element,
 			esc_attr( $this->field_settings['prefix'] ),
 			$id,
+			esc_attr( $this->field_settings['outer_class'] ),
+			esc_attr( $this->field_settings['class'] ),
 
 
 		];

@@ -21,7 +21,7 @@ class Hidden extends Field {
 	protected function generate() {
 
 
-		$template = '<input class="{{CSS_PREFIX}}__form__input-hidden {{CSS_PREFIX}}__form__input-text-{{SLUG}}" type="hidden" name="{{CSS_PREFIX}}-{{SLUG}}" value="{{VALUE}}"  {{ID}}>';
+		$template = '<input class="{{CSS_PREFIX}}__form__input-hidden {{CSS_PREFIX}}__form__input-text-{{SLUG}} {{CLASS}}" type="hidden" name="{{CSS_PREFIX}}-{{SLUG}}" value="{{VALUE}}"  {{ID}}>';
 
 		$id = '';
 		if ( $this->field_settings['id'] ) {
@@ -34,12 +34,14 @@ class Hidden extends Field {
 			'{{CSS_PREFIX}}',
 			'{{ID}}',
 			'{{VALUE}}',
+			'{{CLASS}}',
 		];
 		$replace_with_array = [
 			esc_attr( $this->field_settings['slug'] ),
 			$this->field_settings['prefix'],
 			$id,
 			$this->field_settings['value'],
+			esc_attr( $this->field_settings['class'] ),
 		];
 
 

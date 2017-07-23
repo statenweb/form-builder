@@ -22,7 +22,10 @@ class Separator extends Field {
 
 	protected function generate() {
 
-		$this->generated_element = '<hr>';
+		$template = '<hr class="{{CLASS}}">';
+
+		$this->generated_element = str_replace( $template, [ '{{CLASS}}' ],
+			[ esc_attr( $this->field_settings['slug'] ) ] );
 
 		return true;
 

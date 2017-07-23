@@ -26,7 +26,7 @@ class Select extends Field {
 	protected function generate() {
 
 
-		$template        = '<p class="{{CSS_PREFIX}}__form__element-wrap {{CSS_PREFIX}}__form__element-wrap-{{SLUG}}">{{LABEL_BEFORE}}<select class="{{CSS_PREFIX}}__form__input-text {{CSS_PREFIX}}__form__input-text-{{SLUG}}" name="{{CSS_PREFIX}}-{{SLUG}}" {{REQUIRED_DATA_ATTRIBUTE}} {{ID}}>{{OPTIONS}}</select>{{LABEL_AFTER}}</p>';
+		$template        = '<p class="{{CSS_PREFIX}}__form__element-wrap {{CSS_PREFIX}}__form__element-wrap-{{SLUG}} {{OUTER_CLASS}}">{{LABEL_BEFORE}}<select class="{{CSS_PREFIX}}__form__input-text {{CSS_PREFIX}}__form__input-text-{{SLUG}} {{CLASS}}" name="{{CSS_PREFIX}}-{{SLUG}}" {{REQUIRED_DATA_ATTRIBUTE}} {{ID}}>{{OPTIONS}}</select>{{LABEL_AFTER}}</p>';
 		$option_template = '<option class="{{CSS_PREFIX}}__form__input-text {{CSS_PREFIX}}__form__input-text-{{KEY}}" value="{{VALUE}}" {{DEFAULT_DATA_ATTRIBUTE}}>{{LABEL}}</option>';
 
 		$id = '';
@@ -64,9 +64,11 @@ class Select extends Field {
 					esc_attr( $this->field_settings['slug'] ),
 					esc_html( $this->field_settings['label'] ),
 					$tooltip_element,
-					$required_element
+					$required_element,
+					esc_attr( $this->field_settings['label_class'] ),
+
 				],
-				'<label class="{{CSS_PREFIX}}__form__input-label {{CSS_PREFIX}}__form__input-label-{{SLUG}}">{{LABEL}}{{REQUIRED_ELEMENT}}{{TOOLTIP}}</label>' );
+				'<label class="{{CSS_PREFIX}}__form__input-label {{CSS_PREFIX}}__form__input-label-{{SLUG}} {{LABEL_CLASS}}">{{LABEL}}{{REQUIRED_ELEMENT}}{{TOOLTIP}}</label>' );
 		}
 
 		$label_after  = $label_element;
@@ -83,12 +85,13 @@ class Select extends Field {
 			'{{REQUIRED_DATA_ATTRIBUTE}}',
 			'{{REQUIRED_ELEMENT}}',
 			'{{TOOLTIP_ELEMENT}}',
-
 			'{{LABEL_BEFORE}}',
 			'{{LABEL_AFTER}}',
 			'{{OPTIONS}}',
 			'{{CSS_PREFIX}}',
 			'{{ID}}',
+			'{{OUTER_CLASS}}',
+			'{{CLASS}}',
 		];
 		$replace_with_array = [
 			esc_attr( $this->field_settings['slug'] ),
@@ -100,8 +103,8 @@ class Select extends Field {
 			$options,
 			$this->field_settings['prefix'],
 			$id,
-
-
+			esc_attr( $this->field_settings['outer_class'] ),
+			esc_attr( $this->field_settings['class'] ),
 		];
 
 

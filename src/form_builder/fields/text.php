@@ -87,7 +87,7 @@ class Text extends Field {
 			$label_after,
 			$this->field_settings['prefix'],
 			$id,
-			esc_attr( $this->field_settings['class'] ),
+			isset( $this->field_settings['class'] ) ? esc_attr( $this->field_settings['class'] ) : '',
 
 
 		];

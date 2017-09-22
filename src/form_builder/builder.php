@@ -43,7 +43,7 @@ class Builder {
 
 		$before_template = '<form method="{{METHOD}}" class="{{CSS_PREFIX}}__form {{CSS_PREFIX}}__form-{{SLUG}} {{CLASS}}" {{NOVALIDATE}}>';
 		$after_template  = '</form>';
-		$novalidate = '';
+		$novalidate      = '';
 		if ( $this->settings['novalidate'] ) {
 			$novalidate = 'novalidate="novalidate"';
 		}
@@ -53,7 +53,7 @@ class Builder {
 				esc_attr( $this->slug ),
 				esc_attr( $this->slug ),
 				esc_attr( $this->settings['method'] ),
-				esc_attr( $this->settings['class'] ),
+				isset( $this->settings['class'] ) ? esc_attr( $this->settings['class'] ) : '',
 				esc_attr( $novalidate ),
 			], $before_template );
 		$after  = $after_template;

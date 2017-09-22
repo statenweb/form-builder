@@ -63,25 +63,20 @@ class Button extends Field {
 
 		$replace_array      = [
 			'{{SLUG}}',
-			'{{TOOLTIP_ELEMENT}}',
 			'{{TYPE}}',
-			'{{PLACEHOLDER}}',
 			'{{LABEL_BEFORE}}',
 			'{{LABEL_AFTER}}',
 			'{{CSS_PREFIX}}',
 			'{{ID}}',
 			'{{BUTTON_TEXT}}',
-			'{{CLASS}}',
 		];
 		$replace_with_array = [
 			esc_attr( $this->field_settings['slug'] ),
-			$tooltip_element,
-			$this->field_settings['type'],
-			$this->field_settings['placeholder'],
-			$label_before,
-			$label_after,
-			$this->field_settings['prefix'],
-			$id,
+			esc_attr( $this->field_settings['type'] ),
+			esc_html( $label_before ),
+			esc_html( $label_after ),
+			esc_attr( $this->field_settings['prefix'] ),
+			esc_attr( $id ),
 			esc_attr( $this->field_settings['text'] ),
 
 

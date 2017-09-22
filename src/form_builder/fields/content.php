@@ -26,7 +26,7 @@ class Content extends Field {
 		$inner          = '';
 		$inner_template = '<{{INNER_TAG}}>{{CONTENT}}</{{INNER_TAG}}>';
 
-		if ( $this->field_settings['content'] ) {
+		if ( isset( $this->field_settings['content'] ) && $this->field_settings['content'] ) {
 			$inner = str_replace( [
 				'{{INNER_TAG}}',
 				'{{CONTENT}}',
@@ -47,11 +47,11 @@ class Content extends Field {
 			'{{CLASS}}',
 		];
 		$replace_with_array = [
-			esc_attr( $this->field_settings['slug'] ),
+			isset( $this->field_settings['slug'] ) ? esc_attr( $this->field_settings['slug'] ) : '',
 			esc_attr( $this->field_settings['prefix'] ),
 			esc_attr( $this->field_settings['outer_tag'] ),
 			$inner,
-			esc_attr( $this->field_settings['class'] ),
+			isset( $this->field_settings['class'] ) ? esc_attr( $this->field_settings['class'] ) : '',
 		];
 
 

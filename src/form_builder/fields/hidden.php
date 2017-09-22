@@ -41,7 +41,7 @@ class Hidden extends Field {
 			$this->field_settings['prefix'],
 			$id,
 			$this->field_settings['value'],
-			esc_attr( $this->field_settings['class'] ),
+			isset( $this->field_settings['class'] ) ? esc_attr( $this->field_settings['class'] ) : '',
 		];
 
 
